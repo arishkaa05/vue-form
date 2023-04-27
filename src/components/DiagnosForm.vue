@@ -1,7 +1,7 @@
 <template>
   <div class="diagnos">
     Диагноз:
-    <button type="button">Неверный диагноз</button>
+    <button type="button" @click="$emit('diagnoseSubmit', diagnoseSubmit=true)">Неверный диагноз</button>
   </div>
 
 </template>
@@ -10,6 +10,7 @@
 export default {
   data() {
     return {
+      diagnoseSubmit: false
 
     }
   }
@@ -24,12 +25,15 @@ export default {
     text-align: left;
     padding: 40px;
     border-radius: 10px;
+    font-size: 24px;
+
   }
   button {
     padding: 10px 40px;
     border: 1px solid #9a9a9a;
     border-radius: 7px;
     color: #555;
-    margin: 20px 35%;
+    cursor: pointer;
+    margin: 20px 35% 0;
   }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <div class="diagnos">
+  <div class="diagnos" @click="$emit('diagnoseDirection', this.diagnoseDirection)">
     <div class="diagnos__name">Кардиология</div>
     <div style="display: flex; justify-content: space-around;" >
-      <button type="button">Да</button>
-      <button type="button">Нет</button>
+      <button type="button" @click="diagnoseDirection=1">Да</button>
+      <button type="button" @click="diagnoseDirection=2">Нет</button>
     </div>
     <div style="display: flex; justify-content: center;">
-      <button type="button">Помощь</button>
+      <button type="button" @click="diagnoseDirection=3">Помощь</button>
     </div>
   </div>
 
@@ -16,7 +16,7 @@
 export default {
   data() {
     return {
-
+      diagnoseDirection: 0,
     }
   }
 }

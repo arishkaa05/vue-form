@@ -1,29 +1,23 @@
 <template>
    <form>
-    <div>Picked: {{ picked }}</div>
-
-    <input type="radio" id="one" value="One" v-model="picked" />
-    <label for="one">One</label>
-
-    <input type="radio" id="two" value="Two" v-model="picked" />
-    <label for="two">Two</label>
-    <div class="direction">
-      <input type="radio" class="direction__inactive" checked>
-      <label>Кардиология</label>
+    <div id="v-model-radiobutton">
+    <input type="radio" id="one" value="1" v-model="picked" />
+    <label for="one">Неврология</label>
+    <br />
+    <input type="radio" id="two" value="2" v-model="picked" />
+    <label for="two">Офтальмология</label>
+    <br />
+    <input type="radio" id="three" value="3" v-model="picked" />
+    <label for="three">Иное</label>
+    <br />
+    <div v-if="picked==3">
+      <select class="simptom__select">
+        <option value="1">Эндокринология</option>
+        <option value="2">Дермотология</option>
+        <option value="3">Педиатрия</option>
+      </select>
     </div>
-    <div class="direction">
-      <input type="radio" >
-      <label>Неврология</label>
-    </div>
-    <div class="direction" >
-      <input type="radio" v-model="checked">
-      {{ checked }}
-      <label>Иное</label>
-    </div>
-    <select class="simptom__select">
-      <option value="exactly" selected>Офтальмология </option>
-      <option value="not-exactly">Эндокринология</option>
-    </select>
+  </div>
 
 
   </form>
@@ -33,9 +27,9 @@
 export default {
   data() {
     return {
-      anotherActive: false
+      picked: ''
     }
-  }
+  },
 }
 </script>
 
@@ -56,12 +50,31 @@ form {
     color: #ccc;
   }
 }
+label {
+     color: #999;
+    // display: inline-block;
+    // margin: 25px 0 15px;
+     font-size: 12px;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     font-weight: bold;
+     margin-bottom: 10px;
+  }
+input {
+    //display: block;
+     padding: 10px 16px;
+    // width: 100%;
+    // box-sizing: border-box;
+    // border: none;
+    // border-bottom: 1px solid #ddd;
+     color:#555;
+  }
 .simptom {
     &__select {
-  margin: 5px 10px;
+      margin: 5px 10px;
       border: none;
       border-bottom: 1px solid #ddd;
-      color:#555;
+      color:#999;
       font-size: 16px;
     }
   }

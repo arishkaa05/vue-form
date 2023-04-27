@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="$emit('formSubmit', formSubmitted=true)">
     <div class="identification">
       <label class="identification__label">ФИО</label>
       <input type="text" required v-model="name">
@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       name: '',
+      formSubmitted: false,
       identification: '',
       pulse: {
         pulseValue: '',
@@ -83,7 +84,8 @@ export default {
     padding: 10px 40px;
     border: 1px solid #9a9a9a;
     border-radius: 7px;
-    color: #555;
+    color: #222;
+    cursor: pointer;
     margin: 20px 35%;
   }
   input:hover {

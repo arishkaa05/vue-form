@@ -1,10 +1,10 @@
 <template>
    <div id="app" class="app">
-    <SignForm />
-    <DiagnosForm />
-    <MedicalDirection />
-    <AddExamination />
-    <AnotherDirection />
+    <SignForm @formSubmit="formSubmit"/>
+    <DiagnosForm v-if="formSubmitted" @diagnoseSubmit=diagnoseSubmit />
+    <MedicalDirection v-if="diagnoseInCorrect" @diagnoseDirection="diagnoseDirection"/>
+    <AddExamination  v-if="this.diagnoseValue==1"/>
+    <AnotherDirection v-if="this.diagnoseValue==2"/>
    </div>
 </template>
 
@@ -25,6 +25,22 @@ export default {
     MedicalDirection,
     AddExamination,
     AnotherDirection
+   },
+   data: () => ({
+    formSubmitted: false,
+    diagnoseInCorrect: false,
+    diagnoseValue: 0,
+   }),
+   methods: {
+    formSubmit() {
+      this.formSubmitted = !this.formSubmitted
+    },
+    diagnoseSubmit() {
+      this.diagnoseInCorrect = !this.diagnoseInCorrect
+    },
+    diagnoseDirection(value) {
+      this.diagnoseValue = value
+    }
    }
 }
 </script>
