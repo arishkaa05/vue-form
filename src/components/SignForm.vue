@@ -1,7 +1,7 @@
 <template>
-  <form @submit.prevent="submit">
+  <form>
     <div class="identification">
-      <label class="identification__label">Name</label>
+      <label class="identification__label">ФИО</label>
       <input type="text" required v-model="name">
     </div>
     <div class="identification">
@@ -11,7 +11,7 @@
     <div class="simptoms">
       <div class="simptom">
         <label class="simptom__name">Пульс</label>
-        <input class="simptom__input" type="text" required v-model="pulse.pulseValue">
+        <input class="simptom__input" type="text" v-model="pulse.pulseValue">
         <select class="simptom__select" v-model="pulse.pulseRole">
           <option value="exactly" selected>Точные данные</option>
           <option value="not-exactly">Неточные данные</option>
@@ -20,7 +20,7 @@
       </div>
       <div class="simptom">
         <label class="simptom__name">Давление</label>
-        <input class="simptom__input" type="text" required v-model="pressure.pressureValue">
+        <input class="simptom__input" type="text" v-model="pressure.pressureValue">
         <select class="simptom__select" v-model="pressure.pressureRole">
           <option value="exactly" selected>Точные данные</option>
           <option value="not-exactly">Неточные данные</option>
@@ -28,14 +28,8 @@
         </select>
       </div>
     </div>
-
-    <button type="submit">Submit</button>
+    <button type="submit">Отправить</button>
   </form>
-  <br><br>
-  <p> Name: {{ name }} </p>
-  <p> №: {{ identification }} </p>
-  <p> Pulse: {{ pulse.pulseValue }} {{ pulse.pulseRole }} </p>
-  <p> Pressure: {{ pressure.pressureValue }} {{ pressure.pressureRole }} </p>
 
 </template>
 

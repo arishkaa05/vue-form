@@ -1,14 +1,30 @@
 <template>
-  <SignForm />
+   <div id="app" class="app">
+    <SignForm />
+    <DiagnosForm />
+    <MedicalDirection />
+    <AddExamination />
+    <AnotherDirection />
+   </div>
 </template>
+
 <script>
 
 import SignForm from './components/SignForm.vue';
+import DiagnosForm from './components/DiagnosForm.vue';
+import MedicalDirection from './components/MedicalDirection.vue';
+import AddExamination from './components/AddExamination.vue';
+import AnotherDirection from './components/AnotherDirection.vue';
+
 
 export default {
   name: 'App',
   components: {
     SignForm,
+    DiagnosForm,
+    MedicalDirection,
+    AddExamination,
+    AnotherDirection
    }
 }
 </script>
