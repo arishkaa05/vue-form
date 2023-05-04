@@ -15,6 +15,7 @@ label {
     margin: 25px 20px 0 0;
     color: #3d3d3dd1;
     font-weight: 600;
+    height: 15px;
 }
 
 </style>

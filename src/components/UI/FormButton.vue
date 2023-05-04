@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "FormInput",
+  name: "FormButton",
   props: {
     modelValue: [String, Number],
   },

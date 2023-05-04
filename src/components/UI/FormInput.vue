@@ -20,9 +20,11 @@ export default {
 .input {
   padding: 10px;
   width: 100%;
+  background: #FAFAFA;
   border: 1px solid rgb(60, 58, 114);
   margin: 15px 15px 0 0;
   min-width: 40px;
+  height: 15px;
 }.input:focus {
   border: 2px solid rgb(60, 58, 114);
 }

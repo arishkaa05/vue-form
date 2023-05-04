@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div class="form__content">
-      <h2 class="form__title">{{ formTitile }}</h2>
+      <h2 class="form__title">{{ formTitle }}</h2>
       <slot></slot>
    </div>
   </div>
@@ -12,7 +12,7 @@
 export default {
   name: "FormWindow",
   props: {
-    formTitile: {
+    formTitle: {
       type: String,
       required: true
     }

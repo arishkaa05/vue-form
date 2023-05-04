@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .select {
-  margin-top: 15px;
+  margin: 15px;
   padding: 10px 15px;
   background: none;
   color: rgb(60, 58, 114);;

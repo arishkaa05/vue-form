@@ -3,9 +3,9 @@
     <SignForm
       @formSubmit="formSubmit"
     />
-    <DiagnosForm v-if="formSubmitted" @diagnoseSubmit=diagnoseSubmit />
+    <DiagnoseForm v-if="formSubmitted" @diagnoseSubmit=diagnoseSubmit />
     <MedicalDirection v-if="diagnoseInCorrect" @diagnoseDirection="diagnoseDirection"/>
-    <AddExamination  v-if="this.diagnoseValue==1"/>
+    <AddExamination  v-if="this.diagnoseValue==1" :patientData="patientData"/>
     <AnotherDirection v-if="this.diagnoseValue==2"/>
    </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 
 import SignForm from './components/SignForm.vue';
-import DiagnosForm from './components/DiagnosForm.vue';
+import DiagnoseForm from './components/DiagnoseForm.vue';
 import MedicalDirection from './components/MedicalDirection.vue';
 import AddExamination from './components/AddExamination.vue';
 import AnotherDirection from './components/AnotherDirection.vue';
@@ -23,12 +23,13 @@ export default {
   name: 'App',
   components: {
     SignForm,
-    DiagnosForm,
+    DiagnoseForm,
     MedicalDirection,
     AddExamination,
     AnotherDirection
    },
    data: () => ({
+    patientData: {},
     formSubmitted: false,
     diagnoseInCorrect: false,
     diagnoseValue: 0,
@@ -36,6 +37,7 @@ export default {
    methods: {
     formSubmit(value) {
       console.log(value)
+      this.patientData = value,
       this.formSubmitted = !this.formSubmitted
     },
     diagnoseSubmit() {
@@ -54,7 +56,7 @@ export default {
 
 }
 body {
-  background: rgb(60, 58, 114);
+  background: rgb(213, 212, 224);
   margin: 0;
 }
 </style>

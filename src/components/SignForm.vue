@@ -1,6 +1,5 @@
 <template>
-  <form-window :formTitile="`Введите данные`">
-    <form @submit.prevent="this.$emit('formSubmit', name)">
+  <form-window :formTitle="`Введите данные`">
       <div style="display: flex;">
         <form-label class="identification__label">ФИО</form-label>
         <form-input type="text" placeholder="Иванов Иван Иванович" required v-model="name" />
@@ -10,7 +9,7 @@
         <form-input type="text" placeholder="653683468" required v-model="identification" />
       </div>
       <div class="diagnosis">
-        <div class="simptoms">
+        <div class="symptoms">
           <div v-for="(symptom, index) in symptoms" :key="index">
             <div style="display: flex;">
               <form-label class="simptom__name">{{ symptom.name }}</form-label>
@@ -22,8 +21,7 @@
             </div>
           </div>
         </div>
-        <!-- v-if="formSubmitted" -->
-        <div  class="diagnos">
+        <!-- <div  class="diagnos">
           Предположительный диагноз
           <table>
             <tr>
@@ -36,12 +34,13 @@
               <td style="border: 1px solid gray; min-width: 20px;">{{ symptom.dataAccuracy }}</td>
             </tr>
           </table>
-        </div>
+        </div> -->
       </div>
-
-      <form-button type="submit">Отправить</form-button>
-    </form>
-
+      <form-button type="submit" @click="this.$emit('formSubmit', {
+      name: this.name,
+      identification: this.identification,
+      symptoms: this.symptoms
+    })"> Отправить</form-button>
   </form-window>
 </template>
 
@@ -58,15 +57,8 @@ export default {
   components: { FormWindow, FormInput, FormLabel, FormSelect, FormButton },
   data() {
     return {
-      name: 'Ivanov',
-      formSubmitted: false,
-      identification: '5343',
-      pulse: '',
-      methods: {
-        formSubmit () {
-          this.$emit('formSubmit', 111)
-        }
-      },
+      name: ' ',
+      identification: ' ',
       symptoms: [
         {
           name: 'Пульс',
@@ -122,7 +114,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.simptoms {
+.symptoms {
   //margin-top: 30px;
   width: 60%;
   margin-bottom: 40px;

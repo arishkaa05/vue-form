@@ -1,5 +1,5 @@
 <template>
-  <form-window :formTitile="`Предположительный диагноз`">
+  <form-window :formTitle="`Предположительный диагноз`">
     <div class="diagnoses">Диагноз:<br><br>
       Лечение: <span class="diagnoses__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat ipsa perferendis accusamus. Voluptatibus ea id doloribus placeat dignissimos tempore amet hic porro quod eos, perspiciatis velit mollitia similique sed vel!</span>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <form-window :formTitile="`Направление`">
+  <form-window :formTitle="`Направление`">
     <div class="diagnos" @click="$emit('diagnoseDirection', this.diagnoseDirection)">
       <div class="diagnoses__name">Кардиология</div>
       <div style="display: flex; justify-content: center;" >
