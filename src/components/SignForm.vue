@@ -1,121 +1,144 @@
 <template>
-  <form @submit.prevent="$emit('formSubmit', formSubmitted=true)">
-    <div class="identification">
-      <label class="identification__label">ФИО</label>
-      <input type="text" required v-model="name">
-    </div>
-    <div class="identification">
-      <label class="identification__label">№</label>
-      <input type="text" required v-model="identification">
-    </div>
-    <div class="simptoms">
-      <div class="simptom">
-        <label class="simptom__name">Пульс</label>
-        <input class="simptom__input" type="text" v-model="pulse.pulseValue">
-        <select class="simptom__select" v-model="pulse.pulseRole">
-          <option value="exactly" selected>Точные данные</option>
-          <option value="not-exactly">Неточные данные</option>
-          <option value="impossibility">Невозможно измерить</option>
-        </select>
+  <form-window :formTitile="`Введите данные`">
+    <form @submit.prevent="this.$emit('formSubmit', name)">
+      <div style="display: flex;">
+        <form-label class="identification__label">ФИО</form-label>
+        <form-input type="text" placeholder="Иванов Иван Иванович" required v-model="name" />
       </div>
-      <div class="simptom">
-        <label class="simptom__name">Давление</label>
-        <input class="simptom__input" type="text" v-model="pressure.pressureValue">
-        <select class="simptom__select" v-model="pressure.pressureRole">
-          <option value="exactly" selected>Точные данные</option>
-          <option value="not-exactly">Неточные данные</option>
-          <option value="impossibility">Невозможно измерить</option>
-        </select>
+      <div style="display: flex;">
+        <form-label class="identification__label">№</form-label>
+        <form-input type="text" placeholder="653683468" required v-model="identification" />
       </div>
-    </div>
-    <button type="submit">Отправить</button>
-  </form>
+      <div class="diagnosis">
+        <div class="simptoms">
+          <div v-for="(symptom, index) in symptoms" :key="index">
+            <div style="display: flex;">
+              <form-label class="simptom__name">{{ symptom.name }}</form-label>
+              <form-input
+                type="text"
+                v-model="symptom.value"
+              />
+              <form-select v-model="symptom.dataAccuracy" :options="selectOptions" />
+            </div>
+          </div>
+        </div>
+        <!-- v-if="formSubmitted" -->
+        <div  class="diagnos">
+          Предположительный диагноз
+          <table>
+            <tr>
+              <td style="border: 1px solid gray;">{{ name }}</td>
+              <td style="border: 1px solid gray;">{{ identification }}</td>
+            </tr>
+            <tr v-for="(symptom, index) in symptoms" :key="index">
+              <td style="border: 1px solid gray; min-width: 20px;">{{ symptom.name }}</td>
+              <td style="border: 1px solid gray; min-width: 20px;">{{ symptom.value }}</td>
+              <td style="border: 1px solid gray; min-width: 20px;">{{ symptom.dataAccuracy }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
+      <form-button type="submit">Отправить</form-button>
+    </form>
+
+  </form-window>
 </template>
 
 <script>
+import FormInput from './UI/FormInput.vue';
+import FormWindow from './UI/FormWindow.vue';
+import FormLabel from './UI/FormLabel.vue'
+import FormSelect from './UI/FormSelect.vue';
+import FormButton from './UI/FormButton.vue'
+
+
+
 export default {
+  components: { FormWindow, FormInput, FormLabel, FormSelect, FormButton },
   data() {
     return {
-      name: '',
+      name: 'Ivanov',
       formSubmitted: false,
-      identification: '',
-      pulse: {
-        pulseValue: '',
-        pulseRole: 'exactly'
+      identification: '5343',
+      pulse: '',
+      methods: {
+        formSubmit () {
+          this.$emit('formSubmit', 111)
+        }
       },
-      pressure: {
-        pressureValue: '',
-        pressureRole: 'exactly'
-      }
+      symptoms: [
+        {
+          name: 'Пульс',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        },
+        {
+          name: 'Давление',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        },
+        {
+          name: 'Температура',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        },
+        {
+          name: 'Мимика лица',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        },
+        {
+          name: 'КГР',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        },
+        {
+          name: 'Открытость глаз',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        },
+        {
+          name: 'Качество сна',
+          value: '',
+          dataAccuracy: '',
+          pattern: /^[0-9]+$/
+        }
+      ],
+      selectOptions: [
+        {value: '1', name: 'точно'},
+        {value: '2', name: 'неточно'},
+        {value: '3', name: 'неизмеримо'},
+      ]
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  form {
-    max-width: 420px;
-    margin: 30px auto;
-    background: white;
-    text-align: left;
-    padding: 40px;
-    border-radius: 10px;
-  }
-  label {
-    color: #aaa;
-    display: inline-block;
-    margin: 25px 0 15px;
-    font-size: 0.6em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-  input {
-    display: block;
-    padding: 10px 6px;
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    color:#555;
-  }
-  button {
-    padding: 10px 40px;
-    border: 1px solid #9a9a9a;
-    border-radius: 7px;
-    color: #222;
-    cursor: pointer;
-    margin: 20px 35%;
-  }
-  input:hover {
-    outline: none;
-  }
-  .identification {
-    display: flex;
-    &__label {
-      width: 60px;
-    }
-  }
-  .simptoms {
-    margin-top: 70px;
-    margin-bottom: 40px;
-  }
-  .simptom {
-    display: flex;
-    justify-content: space-between;
-    &__name {
-      width: 20%;
-    }
-    &__input {
-      margin: 0 20px;
-      width: 30%;
-      border-bottom: 1px solid #ddd;
-    }
-    &__select {
-      color:#555;
-      border: none;
-      border-bottom: 1px solid #ddd;
-    }
-  }
+.simptoms {
+  //margin-top: 30px;
+  width: 60%;
+  margin-bottom: 40px;
+}
+.simptom {
+  display: flex;
+  justify-content: space-between;
+
+}
+.diagnosis {
+  display: flex;
+  margin-top: 30px;
+  font-weight: 600;
+  color: #3d3d3dd1;
+}
+.diagnos {
+  margin: 15px;
+}
 </style>

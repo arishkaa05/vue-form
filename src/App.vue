@@ -1,6 +1,8 @@
 <template>
    <div id="app" class="app">
-    <SignForm @formSubmit="formSubmit"/>
+    <SignForm
+      @formSubmit="formSubmit"
+    />
     <DiagnosForm v-if="formSubmitted" @diagnoseSubmit=diagnoseSubmit />
     <MedicalDirection v-if="diagnoseInCorrect" @diagnoseDirection="diagnoseDirection"/>
     <AddExamination  v-if="this.diagnoseValue==1"/>
@@ -32,7 +34,8 @@ export default {
     diagnoseValue: 0,
    }),
    methods: {
-    formSubmit() {
+    formSubmit(value) {
+      console.log(value)
       this.formSubmitted = !this.formSubmitted
     },
     diagnoseSubmit() {
@@ -48,14 +51,10 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 body {
-  background: #eee;
+  background: rgb(60, 58, 114);
   margin: 0;
 }
 </style>

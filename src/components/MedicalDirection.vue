@@ -1,19 +1,24 @@
 <template>
-  <div class="diagnos" @click="$emit('diagnoseDirection', this.diagnoseDirection)">
-    <div class="diagnos__name">Кардиология</div>
-    <div style="display: flex; justify-content: space-around;" >
-      <button type="button" @click="diagnoseDirection=1">Да</button>
-      <button type="button" @click="diagnoseDirection=2">Нет</button>
+  <form-window :formTitile="`Направление`">
+    <div class="diagnos" @click="$emit('diagnoseDirection', this.diagnoseDirection)">
+      <div class="diagnoses__name">Кардиология</div>
+      <div style="display: flex; justify-content: center;" >
+        <form-button type="button" @click="diagnoseDirection=1">Да</form-button>
+        <form-button type="button" @click="diagnoseDirection=2">Нет</form-button>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <form-button type="button" @click="diagnoseDirection=3">Помощь</form-button>
+      </div>
     </div>
-    <div style="display: flex; justify-content: center;">
-      <button type="button" @click="diagnoseDirection=3">Помощь</button>
-    </div>
-  </div>
-
+  </form-window>
 </template>
 
 <script>
+import FormWindow from './UI/FormWindow.vue';
+import FormButton from './UI/FormButton.vue'
+
 export default {
+  components: {FormWindow, FormButton},
   data() {
     return {
       diagnoseDirection: 0,
@@ -23,24 +28,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .diagnos {
-    max-width: 420px;
-    margin: 30px auto;
-    background: white;
-    text-align: left;
-    padding: 40px;
-    border-radius: 10px;
-    &__name {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 20px ;
-    }
+.diagnoses {
+  &__name {
+    font-size: 32px;
+    text-align: center;
+    color: #3d3d3dd1;
+    font-weight: 600;
+    margin-bottom: 20px;
   }
-  button {
-    padding: 10px 40px;
-    border: 1px solid #9a9a9a;
-    border-radius: 7px;
-    color: #555;
-    margin: 20px;
-  }
+}
 </style>
