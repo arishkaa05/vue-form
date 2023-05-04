@@ -57,8 +57,8 @@ export default {
   components: { FormWindow, FormInput, FormLabel, FormSelect, FormButton },
   data() {
     return {
-      name: ' ',
-      identification: ' ',
+      name: '',
+      identification: '',
       symptoms: [
         {
           name: 'Пульс',

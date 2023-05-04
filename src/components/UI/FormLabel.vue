@@ -17,5 +17,8 @@ label {
     font-weight: 600;
     height: 15px;
 }
+.radio {
+  font-size: 16px;
+}
 
 </style>
